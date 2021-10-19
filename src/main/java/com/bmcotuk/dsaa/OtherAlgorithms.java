@@ -63,10 +63,14 @@ public class OtherAlgorithms {
         return current + previous;
     }
 
+    /**
+     * time: O(logn)
+     * space: O(logn)
+     */
     public int printPowersOf2UntilN(int n) {
         if (n < 1) { // error case
             return 0;
-        } else if (n == 1) { // base case
+        } else if (n == 1) { // base case to avoid 1/2 = 0 and 0*2 = 0 failure
             System.out.println(n);
             return n;
         } else { // recursion
