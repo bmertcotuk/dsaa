@@ -1,5 +1,7 @@
 package com.bmcotuk.dsaa;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -8,13 +10,18 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.List;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(MockitoExtension.class)
 class OtherAlgorithmsTest {
+
+    // to test console output
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
 
     private static Stream<Arguments> fibonacciData() {
         return Stream.of(
@@ -54,6 +61,16 @@ class OtherAlgorithmsTest {
     @InjectMocks
     private OtherAlgorithms otherAlgorithms;
 
+    @BeforeEach
+    public void setUpStreams() {
+        System.setOut(new PrintStream(outContent));
+    }
+
+    @AfterEach
+    public void restoreStreams() {
+        System.setOut(originalOut);
+    }
+
     @ParameterizedTest
     @MethodSource("fibonacciData")
     void shouldCalculateFibonacciNumbersRecursively(int input, int output) {
@@ -62,20 +79,53 @@ class OtherAlgorithmsTest {
 
     @ParameterizedTest
     @MethodSource("fibonacciData")
-    void shouldCalculateFibonacciNumbersIteratively(int input, int output) {
-        assertEquals(output, otherAlgorithms.nthFibonacciIterative(input));
+    void shouldCalculateFibonacciNumbersTopDownDP(int input, int output) {
+        assertEquals(output, otherAlgorithms.nthFibonacciTopDownDP(input));
+    }
+
+    @ParameterizedTest
+    @MethodSource("fibonacciData")
+    void shouldCalculateFibonacciNumbersBottomUpDP(int input, int output) {
+        assertEquals(output, otherAlgorithms.nthFibonacciBottomUpDP(input));
     }
 
     @Test
-    void shouldCalculatePermutationsOfString() {
-        List<String> expected = List.of("ABC", "ACB", "BAC", "BCA", "CAB", "CBA");
-        List<String> actual = otherAlgorithms.permutationsOfString("ABC");
+    void shouldPrintPermutationsOfString() {
+        String expected = "ABC\n" +
+                "ACB\n" +
+                "BAC\n" +
+                "BCA\n" +
+                "CAB\n" +
+                "CBA\n";
+        otherAlgorithms.printPermutationsOfString("ABC");
+        String actual = outContent.toString();
         assertEquals(expected, actual);
     }
 
     @ParameterizedTest
     @MethodSource("primeData")
-    void shouldCheckPrimeNumbers(int input, boolean output) {
-        assertEquals(output, otherAlgorithms.isPrime(input));
+    void shouldCheckPrimeNumbersIteratively(int input, boolean output) {
+        assertEquals(output, otherAlgorithms.isPrimeIterative(input));
+    }
+
+    @ParameterizedTest
+    @MethodSource("primeData")
+    void shouldCheckPrimeNumbersRecursively(int input, boolean output) {
+        assertEquals(output, otherAlgorithms.isPrimeRecursive(input));
+    }
+
+    @Test
+    void shouldPrintPowersOf2UntilN() {
+        String expected = "1\n" +
+                "2\n" +
+                "4\n" +
+                "8\n" +
+                "16\n" +
+                "32\n" +
+                "64\n";
+
+        otherAlgorithms.printPowersOf2UntilN(67);
+        String actual = outContent.toString();
+        assertEquals(expected, actual);
     }
 }

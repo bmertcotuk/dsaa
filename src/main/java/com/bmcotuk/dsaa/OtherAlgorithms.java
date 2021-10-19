@@ -2,9 +2,6 @@ package com.bmcotuk.dsaa;
 
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * @author Mert Cotuk
  */
@@ -23,30 +20,68 @@ public class OtherAlgorithms {
     }
 
     /**
+     * Memoization is top-down dynamic programming approach which makes recursive algorithms efficient without making
+     * them iterative.
+     * More at: https://dzone.com/articles/memoization-make-recursive-algorithms-efficient
+     * <p>
+     * time: O(n)
+     * space: O(n)
+     */
+    public int nthFibonacciTopDownDP(int n) {
+        int[] memo = new int[n + 1]; // because we directly index the array with "n"
+        return nthFibonacciTopDownDPRecursion(n, memo);
+    }
+
+    private int nthFibonacciTopDownDPRecursion(int n, int memo[]) {
+        if (n <= 1) {
+            return n;
+        }
+        if (memo[n] == 0) {
+            memo[n] = nthFibonacciTopDownDPRecursion(n - 1, memo) + nthFibonacciTopDownDPRecursion(n - 2, memo);
+        }
+        return memo[n];
+    }
+
+    /**
+     * Bottom-up dynamic programming approach is iterative and the most efficient among all.
+     * <p>
      * time: O(n)
      * space: O(1)
      */
-    public int nthFibonacciIterative(int n) {
-        if (n == 0) { // handled here, so loop should start from 1
+    public int nthFibonacciBottomUpDP(int n) {
+        if (n == 0) {
             return n;
         }
+        int previous = 0;
+        int current = 1;
 
-        int current = 1; // 1 1 2 3
-        int previous = 0; // 0 1 1 2
-
-        for (int i = 1; i < n; i++) { // 0 1 2
-            int temp = current;
-            current = current + previous;
-            previous = temp;
+        for (int i = 2; i < n; i++) { // loop starts from 2 since we gave the minimum requirement
+            int next = previous + current;
+            previous = current;
+            current = next;
         }
-        return current;
+        return current + previous;
+    }
+
+    public int printPowersOf2UntilN(int n) {
+        if (n < 1) { // error case
+            return 0;
+        } else if (n == 1) { // base case
+            System.out.println(n);
+            return n;
+        } else { // recursion
+            int previous = printPowersOf2UntilN(n / 2);
+            int current = previous * 2;
+            System.out.println(current);
+            return current;
+        }
     }
 
     /**
      * time: O(n^1/2)
      * space: O(1)
      */
-    public boolean isPrime(int n) {
+    public boolean isPrimeIterative(int n) {
 
         if (n <= 1) return false;
 
@@ -59,28 +94,45 @@ public class OtherAlgorithms {
         return true;
     }
 
+    public boolean isPrimeRecursive(int n) {
+
+        if (n <= 1) {
+            return false;
+        }
+        if (n == 2) { // important to add
+            return true;
+        }
+        return isPrimeRecursion(2, n);
+    }
+
+    private boolean isPrimeRecursion(int i, int n) {
+
+        if (n % i == 0) { // check this first or it will fail
+            return false;
+        }
+        if (i * i >= n) {
+            return true;
+        }
+        return isPrimeRecursion(i + 1, n);
+    }
+
     /**
-     * NOTE: without the argument `List<String> permutations`
-     * <p>
      * time: O(n!*n + n*n!*n) = O(n^2*n!)
      * space: O(n^2)
      */
-    public List<String> permutationsOfString(String str) {
-        List<String> permutations = new ArrayList<>();
-        permutation(str, "", permutations);
-        return permutations;
+    public void printPermutationsOfString(String str) {
+        permutationRecursion(str, "");
     }
 
-    private void permutation(String remainder, String prefix, List<String> permutations) {
+    private void permutationRecursion(String remainder, String prefix) {
         if (remainder.isEmpty()) {
             // n! calls, n each
-            permutations.add(prefix);
+            System.out.println(prefix);
         } else {
             // n*n! calls, n each
             for (int i = 0; i < remainder.length(); i++) {
-                permutation(remainder.substring(0, i) + remainder.substring(i + 1),
-                        prefix + remainder.charAt(i),
-                        permutations);
+                permutationRecursion(remainder.substring(0, i) + remainder.substring(i + 1),
+                        prefix + remainder.charAt(i));
             }
         }
     }
