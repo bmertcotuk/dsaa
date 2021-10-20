@@ -98,6 +98,10 @@ public class OtherAlgorithms {
         return true;
     }
 
+    /**
+     * time: O(n^1/2)
+     * space: O(n^1/2)
+     */
     public boolean isPrimeRecursive(int n) {
 
         if (n <= 1) {
