@@ -125,6 +125,30 @@ public class OtherAlgorithms {
     }
 
     /**
+     * time: O(logn)
+     * space: O(1)
+     */
+    public int sumDigitsIterative(int n) {
+        int sum = 0;
+        while (n > 0) {
+            sum += n % 10;
+            n /= 10;
+        }
+        return sum;
+    }
+
+    /**
+     * time: O(logn)
+     * space: O(logn)
+     */
+    public int sumDigitsRecursive(int n) {
+        if (n == 0) {
+            return 0;
+        }
+        return n % 10 + sumDigitsRecursive(n / 10);
+    }
+
+    /**
      * time: O(n!*n + n*n!*n) = O(n^2*n!)
      * space: O(n^2)
      */

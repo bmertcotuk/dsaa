@@ -115,6 +115,22 @@ class OtherAlgorithmsTest {
     }
 
     @Test
+    void shouldSumDigitsIteratively() {
+        assertEquals(15, otherAlgorithms.sumDigitsIterative(54321));
+        assertEquals(44, otherAlgorithms.sumDigitsIterative(99998));
+        assertEquals(0, otherAlgorithms.sumDigitsIterative(0));
+        assertEquals(7, otherAlgorithms.sumDigitsIterative(7));
+    }
+
+    @Test
+    void shouldSumDigitsRecursively() {
+        assertEquals(15, otherAlgorithms.sumDigitsRecursive(54321));
+        assertEquals(44, otherAlgorithms.sumDigitsRecursive(99998));
+        assertEquals(0, otherAlgorithms.sumDigitsRecursive(0));
+        assertEquals(7, otherAlgorithms.sumDigitsRecursive(7));
+    }
+
+    @Test
     void shouldPrintPowersOf2UntilN() {
         String expected = "1\n" +
                 "2\n" +
