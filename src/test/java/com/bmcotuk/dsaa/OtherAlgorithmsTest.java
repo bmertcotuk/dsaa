@@ -144,4 +144,21 @@ class OtherAlgorithmsTest {
         String actual = outContent.toString();
         assertEquals(expected, actual);
     }
+
+    @Test
+    void shouldPrintAllSortedPermutationsInTheAlphabetOfLength() {
+        otherAlgorithms.printAllSortedPermutationsInTheAlphabetOfLength( 3,"");
+        String expected = "abc\n" +
+                "abd\n" +
+                "abe\n" +
+                "acd\n" +
+                "ace\n" +
+                "ade\n" +
+                "bcd\n" +
+                "bce\n" +
+                "bde\n" +
+                "cde\n";
+        String actual = outContent.toString();
+        assertEquals(expected, actual);
+    }
 }

@@ -169,16 +169,40 @@ public class OtherAlgorithms {
         }
     }
 
-    // if there is a loop do not assign values like here, be careful
-    /*private void permutationNotWorking(String remainder, String prefix) {
-        if (remainder.isEmpty()) {
-            System.out.println(prefix);
+    /**
+     * a = alphabet size
+     * k = length of strings
+     * <p>
+     * Formula `branches^depth` is the same since high school. This gives us how many calls will occur. The next step
+     * is to multiply by the base case's complexity. This logic applies to all kinds of problems.
+     * <p>
+     * time: O(k*a^k)
+     * space: O(k)
+     */
+    int alphabetSize = 5;
+
+    public void printAllSortedPermutationsInTheAlphabetOfLength(int remaining, String prefix) {
+        if (remaining == 0) {
+            if (isInOrder(prefix)) {
+                System.out.println(prefix);
+            }
         } else {
-            for (int i = 0; i < remainder.length(); i++) {
-                prefix += remainder.charAt(i);
-                remainder = remainder.substring(0, i) + remainder.substring(i + 1);
-                permutation(remainder, prefix);
+            for (int i = 0; i < alphabetSize; i++) {
+                printAllSortedPermutationsInTheAlphabetOfLength(remaining - 1, prefix + nthLetterOfTheAlphabet(i));
             }
         }
-    }*/
+    }
+
+    private char nthLetterOfTheAlphabet(int n) {
+        return (char) (((int) 'a') + n);
+    }
+
+    private boolean isInOrder(String s) {
+        for (int i = 0; i < s.length() - 1; i++) {
+            if (s.charAt(i) >= s.charAt(i + 1)) { // just to avoid same characters, still can be ">"
+                return false;
+            }
+        }
+        return true;
+    }
 }
