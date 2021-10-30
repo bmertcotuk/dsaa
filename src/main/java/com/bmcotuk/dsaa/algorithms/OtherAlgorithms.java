@@ -239,4 +239,28 @@ public class OtherAlgorithms {
             }
         }
     }
+
+    /**
+     * Two sorted integer arrays, of the same size, each with all distinct elements.
+     * <p>
+     * time: O(n)
+     * space: O(1)
+     */
+    public int findTheNumberOfElementsInCommon(int[] array1, int[] array2) {
+        int count = 0;
+        int i = 0;
+        int j = 0;
+        while (i < array1.length && j < array2.length) {
+            if (array1[i] < array2[j]) {
+                i++;
+            } else if (array1[i] > array2[j]) {
+                j++;
+            } else {
+                count++;
+                i++;
+                j++;
+            }
+        }
+        return count;
+    }
 }

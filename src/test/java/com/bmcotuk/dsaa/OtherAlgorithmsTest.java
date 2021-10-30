@@ -214,4 +214,26 @@ class OtherAlgorithmsTest {
         String actual = outContent.toString();
         assertEquals(expected, actual);
     }
+
+    @Test
+    void shouldFindTheNumberOfElementsInCommon() {
+        int[] array1 = {1, 2, 3};
+        int[] array2 = {1, 2, 3};
+        assertEquals(3, otherAlgorithms.findTheNumberOfElementsInCommon(array1, array2));
+        array1 = new int[]{};
+        array2 = new int[]{};
+        assertEquals(0, otherAlgorithms.findTheNumberOfElementsInCommon(array1, array2));
+        array1 = new int[]{1, 2, 3};
+        array2 = new int[]{1, 2, 4};
+        assertEquals(2, otherAlgorithms.findTheNumberOfElementsInCommon(array1, array2));
+        array1 = new int[]{1, 2, 3};
+        array2 = new int[]{4, 5, 6};
+        assertEquals(0, otherAlgorithms.findTheNumberOfElementsInCommon(array1, array2));
+        array1 = new int[]{1, 1, 3};
+        array2 = new int[]{1, 1, 4};
+        assertEquals(2, otherAlgorithms.findTheNumberOfElementsInCommon(array1, array2));
+        array1 = new int[]{1, 1};
+        array2 = new int[]{1, 1};
+        assertEquals(2, otherAlgorithms.findTheNumberOfElementsInCommon(array1, array2));
+    }
 }
