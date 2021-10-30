@@ -1,5 +1,6 @@
 package com.bmcotuk.dsaa;
 
+import com.bmcotuk.dsaa.algorithms.OtherAlgorithms;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -158,6 +159,58 @@ class OtherAlgorithmsTest {
                 "bce\n" +
                 "bde\n" +
                 "cde\n";
+        String actual = outContent.toString();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void shouldPrintAllPositiveIntegerSolutionsToCubicEquation() {
+        otherAlgorithms.printAllPositiveIntegerSolutionsToCubicEquation(5);
+        String expected = "Pair1(4, 4) - Pair2(4, 4)\n" +
+                "Pair1(1, 4) - Pair2(1, 4)\n" +
+                "Pair1(1, 4) - Pair2(4, 1)\n" +
+                "Pair1(4, 1) - Pair2(1, 4)\n" +
+                "Pair1(4, 1) - Pair2(4, 1)\n" +
+                "Pair1(1, 1) - Pair2(1, 1)\n" +
+                "Pair1(2, 3) - Pair2(2, 3)\n" +
+                "Pair1(2, 3) - Pair2(3, 2)\n" +
+                "Pair1(3, 2) - Pair2(2, 3)\n" +
+                "Pair1(3, 2) - Pair2(3, 2)\n" +
+                "Pair1(2, 5) - Pair2(2, 5)\n" +
+                "Pair1(2, 5) - Pair2(5, 2)\n" +
+                "Pair1(5, 2) - Pair2(2, 5)\n" +
+                "Pair1(5, 2) - Pair2(5, 2)\n" +
+                "Pair1(2, 4) - Pair2(2, 4)\n" +
+                "Pair1(2, 4) - Pair2(4, 2)\n" +
+                "Pair1(4, 2) - Pair2(2, 4)\n" +
+                "Pair1(4, 2) - Pair2(4, 2)\n" +
+                "Pair1(1, 2) - Pair2(1, 2)\n" +
+                "Pair1(1, 2) - Pair2(2, 1)\n" +
+                "Pair1(2, 1) - Pair2(1, 2)\n" +
+                "Pair1(2, 1) - Pair2(2, 1)\n" +
+                "Pair1(2, 2) - Pair2(2, 2)\n" +
+                "Pair1(3, 3) - Pair2(3, 3)\n" +
+                "Pair1(3, 5) - Pair2(3, 5)\n" +
+                "Pair1(3, 5) - Pair2(5, 3)\n" +
+                "Pair1(5, 3) - Pair2(3, 5)\n" +
+                "Pair1(5, 3) - Pair2(5, 3)\n" +
+                "Pair1(5, 5) - Pair2(5, 5)\n" +
+                "Pair1(3, 4) - Pair2(3, 4)\n" +
+                "Pair1(3, 4) - Pair2(4, 3)\n" +
+                "Pair1(4, 3) - Pair2(3, 4)\n" +
+                "Pair1(4, 3) - Pair2(4, 3)\n" +
+                "Pair1(1, 3) - Pair2(1, 3)\n" +
+                "Pair1(1, 3) - Pair2(3, 1)\n" +
+                "Pair1(3, 1) - Pair2(1, 3)\n" +
+                "Pair1(3, 1) - Pair2(3, 1)\n" +
+                "Pair1(4, 5) - Pair2(4, 5)\n" +
+                "Pair1(4, 5) - Pair2(5, 4)\n" +
+                "Pair1(5, 4) - Pair2(4, 5)\n" +
+                "Pair1(5, 4) - Pair2(5, 4)\n" +
+                "Pair1(1, 5) - Pair2(1, 5)\n" +
+                "Pair1(1, 5) - Pair2(5, 1)\n" +
+                "Pair1(5, 1) - Pair2(1, 5)\n" +
+                "Pair1(5, 1) - Pair2(5, 1)\n";
         String actual = outContent.toString();
         assertEquals(expected, actual);
     }

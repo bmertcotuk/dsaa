@@ -1,6 +1,12 @@
-package com.bmcotuk.dsaa;
+package com.bmcotuk.dsaa.algorithms;
 
+import com.bmcotuk.dsaa.datastructures.Pair;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Mert Cotuk
@@ -204,5 +210,33 @@ public class OtherAlgorithms {
             }
         }
         return true;
+    }
+
+    /**
+     * Equation: a^3 + b^3 = c^3 + d^3 where a, b, c, d in [1, n]
+     * <p>
+     * time: O(n^2)
+     * space: O(n^2)
+     */
+    public void printAllPositiveIntegerSolutionsToCubicEquation(int n) {
+
+        Map<Integer, List<Pair<Integer, Integer>>> resultListMap = new HashMap<>();
+        for (int a = 1; a <= n; a++) {
+            for (int b = 1; b <= n; b++) {
+                Pair<Integer, Integer> pair = new Pair<>(a, b);
+                int result = a * a * a + b * b * b;
+                List<Pair<Integer, Integer>> list = resultListMap.getOrDefault(result, new ArrayList<>());
+                list.add(pair);
+                resultListMap.put(result, list);
+            }
+        }
+        for (Map.Entry<Integer, List<Pair<Integer, Integer>>> entry : resultListMap.entrySet()) {
+            List<Pair<Integer, Integer>> resultList = entry.getValue();
+            for (Pair<Integer, Integer> pair1 : resultList) {
+                for (Pair<Integer, Integer> pair2 : resultList) {
+                    System.out.println("Pair1" + pair1 + " - Pair2" + pair2);
+                }
+            }
+        }
     }
 }
