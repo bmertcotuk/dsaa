@@ -1,6 +1,5 @@
-package com.bmcotuk.dsaa;
+package com.bmcotuk.dsaa.algorithms;
 
-import com.bmcotuk.dsaa.algorithms.OtherAlgorithms;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
