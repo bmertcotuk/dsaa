@@ -1,5 +1,7 @@
 package com.bmcotuk.dsaa.algorithms;
 
+import com.bmcotuk.dsaa.common.Node;
+import com.bmcotuk.dsaa.datastructures.LinkedList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -257,5 +259,54 @@ class OtherAlgorithmsTest {
         assertThrows(IllegalArgumentException.class, () -> otherAlgorithms.rearrangeArrayWithRunnerTechnique(input));
         int[] input2 = new int[]{1};
         assertThrows(IllegalArgumentException.class, () -> otherAlgorithms.rearrangeArrayWithRunnerTechnique(input));
+    }
+
+    @Test
+    void shouldRearrangeLinkedListWithRunnerTechnique() {
+        LinkedList<Integer> list = new LinkedList<>();
+        list.appendToTail(0);
+        list.appendToTail(1);
+        list.appendToTail(2);
+        list.appendToTail(3);
+        list.appendToTail(4);
+        list.appendToTail(5);
+        list.appendToTail(6);
+        list.appendToTail(7);
+        otherAlgorithms.rearrangeLinkedListWithRunnerTechnique(list);
+
+        Node<Integer> currentNode = list.getHead();
+        assertEquals(0, currentNode.getData());
+        currentNode = currentNode.getNext();
+        assertEquals(4, currentNode.getData());
+        currentNode = currentNode.getNext();
+        assertEquals(1, currentNode.getData());
+        currentNode = currentNode.getNext();
+        assertEquals(5, currentNode.getData());
+        currentNode = currentNode.getNext();
+        assertEquals(2, currentNode.getData());
+        currentNode = currentNode.getNext();
+        assertEquals(6, currentNode.getData());
+        currentNode = currentNode.getNext();
+        assertEquals(3, currentNode.getData());
+        currentNode = currentNode.getNext();
+        assertEquals(7, currentNode.getData());
+    }
+
+    @Test
+    void shouldNotRearrangeSmallOrEmptyListWithRunnerTechnique() {
+        LinkedList<Integer> list = new LinkedList<>();
+        assertEquals(list, otherAlgorithms.rearrangeLinkedListWithRunnerTechnique(list));
+    }
+
+    @Test
+    void shouldThrowExceptionIfListSizeIsNotEven() {
+        LinkedList<Integer> list = new LinkedList<>();
+        list.appendToTail(0);
+        assertThrows(IllegalArgumentException.class,
+                () -> otherAlgorithms.rearrangeLinkedListWithRunnerTechnique(list));
+        list.appendToTail(1);
+        list.appendToTail(2);
+        assertThrows(IllegalArgumentException.class,
+                () -> otherAlgorithms.rearrangeLinkedListWithRunnerTechnique(list));
     }
 }

@@ -1,6 +1,8 @@
 package com.bmcotuk.dsaa.algorithms;
 
 import com.bmcotuk.dsaa.common.KeyValuePair;
+import com.bmcotuk.dsaa.common.Node;
+import com.bmcotuk.dsaa.datastructures.LinkedList;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -304,5 +306,44 @@ public class OtherAlgorithms {
             slowPointer++;
         }
         return arrangedArray;
+    }
+
+    /**
+     * time: O(n)
+     * space: O(1)
+     */
+    public LinkedList<Integer> rearrangeLinkedListWithRunnerTechnique(LinkedList<Integer> list) {
+        if (list == null) {
+            throw new IllegalArgumentException("List should not be null.");
+        }
+        if (list.size() % 2 != 0) {
+            throw new IllegalArgumentException("List's size must be an even number.");
+        }
+
+        if (list.isEmpty()) {
+            return list;
+        }
+
+        // move pointers
+        Node<Integer> fastPointer = list.getHead().getNext();
+        Node<Integer> slowPointer = list.getHead();
+        while (fastPointer.getNext() != null) {
+            fastPointer = fastPointer.getNext().getNext();
+            slowPointer = slowPointer.getNext();
+        }
+        // do not touch slow pointer here since we have only singly linked list lacking previous()
+        fastPointer = list.getHead();
+
+        // start weaving
+        while (fastPointer.getNext().getNext() != null) {
+            Node<Integer> temporary = slowPointer.getNext();
+            slowPointer.setNext(slowPointer.getNext().getNext());
+            temporary.setNext(fastPointer.getNext());
+            fastPointer.setNext(temporary);
+
+            // do not touch the slow pointer again as it will indirectly be moved forward by each weaving
+            fastPointer = fastPointer.getNext().getNext();
+        }
+        return list;
     }
 }
