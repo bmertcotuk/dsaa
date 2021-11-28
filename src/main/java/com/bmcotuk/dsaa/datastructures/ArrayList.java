@@ -19,6 +19,9 @@ public class ArrayList<T> {
     }
 
     public void add(T data) {
+        if (data == null) {
+            throw new IllegalArgumentException();
+        }
         ensureCapacity();
         array[size++] = data;
     }

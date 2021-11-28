@@ -1,4 +1,4 @@
-package com.bmcotuk.dsaa.datastructures;
+package com.bmcotuk.dsaa.common;
 
 import java.util.Objects;
 

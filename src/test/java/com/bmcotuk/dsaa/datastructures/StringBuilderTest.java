@@ -3,6 +3,7 @@ package com.bmcotuk.dsaa.datastructures;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class StringBuilderTest {
 
@@ -29,5 +30,11 @@ class StringBuilderTest {
         builder.append("ghi");
         builder.append("jkl");
         assertEquals("abcdefghijkl", builder.toString());
+    }
+
+    @Test
+    void shouldThrowExceptionOnNullArgumentForAppendOperation() {
+        StringBuilder builder = new StringBuilder();
+        assertThrows(IllegalArgumentException.class, () -> builder.append(null));
     }
 }

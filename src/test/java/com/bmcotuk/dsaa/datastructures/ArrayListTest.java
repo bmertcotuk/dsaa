@@ -87,4 +87,10 @@ class ArrayListTest {
         ArrayList<Integer> list = new ArrayList<>();
         assertEquals(0, list.size());
     }
+
+    @Test
+    void shouldThrowExceptionOnNullArgumentForAddOperation() {
+        ArrayList<Integer> list = new ArrayList<>();
+        assertThrows(IllegalArgumentException.class, () -> list.add(null));
+    }
 }

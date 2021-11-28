@@ -1,5 +1,7 @@
 package com.bmcotuk.dsaa.datastructures;
 
+import com.bmcotuk.dsaa.common.Node;
+
 import java.util.NoSuchElementException;
 
 /**
@@ -19,6 +21,9 @@ public class LinkedList<T> {
     }
 
     public void appendToTail(T data) {
+        if (data == null) {
+            throw new IllegalArgumentException();
+        }
         Node<T> newNode = new Node<>(data);
         if (isEmpty()) {
             head = newNode;
@@ -36,6 +41,9 @@ public class LinkedList<T> {
     // using currentNode object with reference affects the whole list, no need to return the head
     // data is still what defines an object and is checked in `equals()`
     public void remove(T data) {
+        if (data == null) {
+            throw new IllegalArgumentException();
+        }
         Node<T> nodeToBeRemoved = new Node<>(data);
         Node<T> currentNode = head;
 

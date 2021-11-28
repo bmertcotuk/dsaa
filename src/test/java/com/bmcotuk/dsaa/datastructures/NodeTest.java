@@ -1,5 +1,6 @@
 package com.bmcotuk.dsaa.datastructures;
 
+import com.bmcotuk.dsaa.common.Node;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

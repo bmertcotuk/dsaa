@@ -1,5 +1,6 @@
 package com.bmcotuk.dsaa.datastructures;
 
+import com.bmcotuk.dsaa.common.Node;
 import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;
@@ -105,5 +106,17 @@ class LinkedListTest {
         assertEquals(new Node<>("c"), list.getHead().getNext().getNext());
         assertEquals(3, list.size());
         assertFalse(list.isEmpty());
+    }
+
+    @Test
+    void shouldThrowExceptionOnNullArgumentForAppendOperation() {
+        LinkedList<Integer> list = new LinkedList<>();
+        assertThrows(IllegalArgumentException.class, () -> list.appendToTail(null));
+    }
+
+    @Test
+    void shouldThrowExceptionOnNullArgumentForRemoveOperation() {
+        LinkedList<Integer> list = new LinkedList<>();
+        assertThrows(IllegalArgumentException.class, () -> list.remove(null));
     }
 }

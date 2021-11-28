@@ -18,6 +18,9 @@ public class StringBuilder {
     }
 
     public void append(String s) {
+        if (s == null) {
+            throw new IllegalArgumentException();
+        }
         ensureCapacity();
         char[] anotherArray = s.toCharArray();
         for (char c : anotherArray) {

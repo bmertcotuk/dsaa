@@ -1,6 +1,6 @@
 package com.bmcotuk.dsaa.algorithms;
 
-import com.bmcotuk.dsaa.datastructures.Pair;
+import com.bmcotuk.dsaa.common.KeyValuePair;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -220,20 +220,20 @@ public class OtherAlgorithms {
      */
     public void printAllPositiveIntegerSolutionsToCubicEquation(int n) {
 
-        Map<Integer, List<Pair<Integer, Integer>>> resultListMap = new HashMap<>();
+        Map<Integer, List<KeyValuePair<Integer, Integer>>> resultListMap = new HashMap<>();
         for (int a = 1; a <= n; a++) {
             for (int b = 1; b <= n; b++) {
-                Pair<Integer, Integer> pair = new Pair<>(a, b);
+                KeyValuePair<Integer, Integer> pair = new KeyValuePair<>(a, b);
                 int result = a * a * a + b * b * b;
-                List<Pair<Integer, Integer>> list = resultListMap.getOrDefault(result, new ArrayList<>());
+                List<KeyValuePair<Integer, Integer>> list = resultListMap.getOrDefault(result, new ArrayList<>());
                 list.add(pair);
                 resultListMap.put(result, list);
             }
         }
-        for (Map.Entry<Integer, List<Pair<Integer, Integer>>> entry : resultListMap.entrySet()) {
-            List<Pair<Integer, Integer>> resultList = entry.getValue();
-            for (Pair<Integer, Integer> pair1 : resultList) {
-                for (Pair<Integer, Integer> pair2 : resultList) {
+        for (Map.Entry<Integer, List<KeyValuePair<Integer, Integer>>> entry : resultListMap.entrySet()) {
+            List<KeyValuePair<Integer, Integer>> resultList = entry.getValue();
+            for (KeyValuePair<Integer, Integer> pair1 : resultList) {
+                for (KeyValuePair<Integer, Integer> pair2 : resultList) {
                     System.out.println("Pair1" + pair1 + " - Pair2" + pair2);
                 }
             }
