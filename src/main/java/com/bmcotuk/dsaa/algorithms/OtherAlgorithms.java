@@ -38,7 +38,7 @@ public class OtherAlgorithms {
         return nthFibonacciTopDownDPRecursion(n, memo);
     }
 
-    private int nthFibonacciTopDownDPRecursion(int n, int memo[]) {
+    private int nthFibonacciTopDownDPRecursion(int n, int[] memo) {
         if (n <= 1) {
             return n;
         }
@@ -262,5 +262,47 @@ public class OtherAlgorithms {
             }
         }
         return count;
+    }
+
+    /**
+     * Implementation on a singly linked list is a real challenge!
+     * <p>
+     * time: O(n)
+     * space: O(n)
+     */
+    public int[] rearrangeArrayWithRunnerTechnique(int[] array) {
+        if (array == null) {
+            throw new IllegalArgumentException("Array should not be null.");
+        }
+        if (array.length % 2 != 0) {
+            throw new IllegalArgumentException("Array's length must be an even number.");
+        }
+
+        if (array.length == 0) {
+            return array;
+        }
+
+        // move pointers
+        int slowPointer = 0;
+        int fastPointer = 1;
+        while (fastPointer != array.length - 1) {
+            slowPointer++;
+            fastPointer += 2;
+        }
+        slowPointer++;
+        fastPointer = 0;
+
+        // start weaving
+        int[] arrangedArray = new int[array.length];
+        int i = 0;
+        while (i < arrangedArray.length) {
+            arrangedArray[i] = array[fastPointer];
+            i++;
+            fastPointer++;
+            arrangedArray[i] = array[slowPointer];
+            i++;
+            slowPointer++;
+        }
+        return arrangedArray;
     }
 }

@@ -47,7 +47,7 @@ class HashTableTest {
         assertEquals(10, hashTable.get("Claire"));
         assertEquals(11, hashTable.get("Alex"));
         assertEquals(12, hashTable.get("Luke"));
-        assertEquals(13, hashTable.get("Didi"));
+        assertEquals(13, hashTable.get("DeDe"));
         assertEquals(14, hashTable.get("Dylan"));
     }
 
@@ -66,7 +66,7 @@ class HashTableTest {
         assertTrue(hashTable.containsKey("Claire"));
         assertTrue(hashTable.containsKey("Alex"));
         assertTrue(hashTable.containsKey("Luke"));
-        assertTrue(hashTable.containsKey("Didi"));
+        assertTrue(hashTable.containsKey("DeDe"));
         assertTrue(hashTable.containsKey("Dylan"));
     }
 
@@ -123,7 +123,7 @@ class HashTableTest {
         hashTable.put("Claire", 10);
         hashTable.put("Alex", 11);
         hashTable.put("Luke", 12);
-        hashTable.put("Didi", 13);
+        hashTable.put("DeDe", 13);
         hashTable.put("Dylan", 14);
         return hashTable;
     }

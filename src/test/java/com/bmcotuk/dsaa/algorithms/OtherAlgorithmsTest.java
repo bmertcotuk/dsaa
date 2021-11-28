@@ -14,7 +14,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 class OtherAlgorithmsTest {
@@ -234,5 +234,28 @@ class OtherAlgorithmsTest {
         array1 = new int[]{1, 1};
         array2 = new int[]{1, 1};
         assertEquals(2, otherAlgorithms.findTheNumberOfElementsInCommon(array1, array2));
+    }
+
+    @Test
+    void shouldRearrangeArrayWithRunnerTechnique() {
+        int[] input = new int[]{1, 2, 3, 4, 5, 6};
+        int[] expected = new int[]{1, 4, 2, 5, 3, 6};
+        assertArrayEquals(expected, otherAlgorithms.rearrangeArrayWithRunnerTechnique(input));
+    }
+
+    @Test
+    void shouldNotRearrangeSmallOrEmptyArrayWithRunnerTechnique() {
+        int[] input1 = new int[]{1, 2};
+        assertArrayEquals(input1, otherAlgorithms.rearrangeArrayWithRunnerTechnique(input1));
+        int[] input2 = new int[]{};
+        assertArrayEquals(input2, otherAlgorithms.rearrangeArrayWithRunnerTechnique(input2));
+    }
+
+    @Test
+    void shouldThrowExceptionIfArraySizeIsNotEven() {
+        int[] input = new int[]{1, 2, 3};
+        assertThrows(IllegalArgumentException.class, () -> otherAlgorithms.rearrangeArrayWithRunnerTechnique(input));
+        int[] input2 = new int[]{1};
+        assertThrows(IllegalArgumentException.class, () -> otherAlgorithms.rearrangeArrayWithRunnerTechnique(input));
     }
 }
