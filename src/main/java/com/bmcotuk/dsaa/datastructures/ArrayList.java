@@ -22,6 +22,10 @@ public class ArrayList<T> {
         if (data == null) {
             throw new IllegalArgumentException();
         }
+        addWithoutNullCheck(data);
+    }
+
+    public void addWithoutNullCheck(T data) {
         ensureCapacity();
         array[size++] = data;
     }

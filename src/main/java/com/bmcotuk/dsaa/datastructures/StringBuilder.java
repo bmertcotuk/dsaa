@@ -28,6 +28,12 @@ public class StringBuilder {
         }
     }
 
+    public void appendRepeated(String s, int times) {
+        for (int i = 0; i < times; i++) {
+            append(s);
+        }
+    }
+
     private void add(char c) {
         ensureCapacity();
         array[size++] = c;

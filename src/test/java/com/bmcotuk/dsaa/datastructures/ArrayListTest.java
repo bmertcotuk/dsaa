@@ -93,4 +93,10 @@ class ArrayListTest {
         ArrayList<Integer> list = new ArrayList<>();
         assertThrows(IllegalArgumentException.class, () -> list.add(null));
     }
+
+    @Test
+    void shouldNotThrowExceptionOnNullArgumentForAddOperation() {
+        ArrayList<Integer> list = new ArrayList<>();
+        assertDoesNotThrow(() -> list.addWithoutNullCheck(null));
+    }
 }

@@ -14,6 +14,15 @@ class StringBuilderTest {
     }
 
     @Test
+    void shouldAppendRepeated() {
+        StringBuilder builder = new StringBuilder();
+        builder.appendRepeated("-", 3);
+        builder.appendRepeated("a", 4);
+        builder.appendRepeated(" ", 2);
+        assertEquals("---aaaa  ", builder.toString());
+    }
+
+    @Test
     void shouldReturnBuiltString() {
         StringBuilder builder = new StringBuilder();
         builder.append("abc");
