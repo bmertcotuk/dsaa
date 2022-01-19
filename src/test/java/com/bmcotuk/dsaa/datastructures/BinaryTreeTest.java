@@ -250,7 +250,20 @@ class BinaryTreeTest {
 
     @Test
     void shouldNotRemoveIfValueNotFound() {
+        String expected = "3 5 7 8 11 13 14 22 \n" +
+                "3 5 7 8 11 13 14 22 \n";
+        BinaryTree tree = buildTree();
+        tree.traverseInOrderDFS(tree.getRoot());
+        System.out.println();
 
+        assertFalse(tree.contains(99));
+        tree.remove(99);
+        assertEquals(8, tree.size());
+        assertFalse(tree.contains(99));
+        tree.traverseInOrderDFS(tree.getRoot());
+        System.out.println();
+
+        assertEquals(expected, outContent.toString());
     }
 
     @Test
@@ -291,21 +304,21 @@ class BinaryTreeTest {
         tree.remove(7);
         assertFalse(tree.contains(7));
         assertEquals(7, tree.size());
-        ;
+
         tree.traverseInOrderDFS(tree.getRoot());
         System.out.println();
 
         tree.remove(3);
         assertFalse(tree.contains(3));
         assertEquals(6, tree.size());
-        ;
+
         tree.traverseInOrderDFS(tree.getRoot());
         System.out.println();
 
         tree.remove(14);
         assertFalse(tree.contains(14));
         assertEquals(5, tree.size());
-        ;
+
         tree.traverseInOrderDFS(tree.getRoot());
         System.out.println();
 
@@ -331,21 +344,21 @@ class BinaryTreeTest {
         tree.remove(5);
         assertFalse(tree.contains(5));
         assertEquals(7, tree.size());
-        ;
+
         tree.traverseInOrderDFS(tree.getRoot());
         System.out.println();
 
         tree.remove(22);
         assertFalse(tree.contains(22));
         assertEquals(6, tree.size());
-        ;
+
         tree.traverseInOrderDFS(tree.getRoot());
         System.out.println();
 
         tree.remove(13);
         assertFalse(tree.contains(13));
         assertEquals(5, tree.size());
-        ;
+
         tree.traverseInOrderDFS(tree.getRoot());
         System.out.println();
 
@@ -364,18 +377,29 @@ class BinaryTreeTest {
         tree.remove(22);
         assertFalse(tree.contains(22));
         assertEquals(7, tree.size());
-        ;
+
         tree.traverseInOrderDFS(tree.getRoot());
         System.out.println();
 
         tree.remove(13);
         assertFalse(tree.contains(13));
         assertEquals(6, tree.size());
-        ;
+
         tree.traverseInOrderDFS(tree.getRoot());
         System.out.println();
 
         assertEquals(expected, outContent.toString());
+    }
+
+    @Test
+    void temp() {
+        BinaryTree tree = buildTree();
+        System.out.println(tree);
+        tree.remove(5);
+        int maxLevel = tree.maxLevelFromNode(tree.getRoot());
+        int maxLevelFromLeft = tree.maxLevelFromNode(tree.getRoot().getLeft());
+        int maxLevelFromRight = tree.maxLevelFromNode(tree.getRoot().getRight());
+        return;
     }
 
     private BinaryTree buildTree() {

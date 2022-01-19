@@ -163,7 +163,86 @@ public class BinaryTree {
         return maxLevelFromNode(root);
     }
 
-    private int maxLevelFromNode(BinaryTreeNode node) {
+    public boolean isBalanced() {
+        return false;
+    }
+
+    // fully balanced
+    public boolean isPerfect() {
+        return isPerfect() && isFull();
+    }
+
+    public boolean isComplete() {
+        return false;
+    }
+
+    private boolean isCompleteBFS(BinaryTreeNode node) {
+
+        Queue<BinaryTreeNode> queue = new Queue<>();
+        if (node != null) {
+            queue.enqueue(node);
+        }
+        while (!queue.isEmpty()) {
+            BinaryTreeNode currentNode = queue.dequeue();
+
+            // between node
+            if (maxLevelFromNode(currentNode) > 2 && hasAnyNullChildren(currentNode)) {
+                return false;
+            }
+
+            // leaf's parent node
+            if (maxLevelFromNode(currentNode) == 2) {
+                return false;
+            }
+
+            if (currentNode.getLeft() != null) {
+                queue.enqueue(currentNode.getLeft());
+            }
+            if (currentNode.getRight() != null) {
+                queue.enqueue(currentNode.getRight());
+            }
+        }
+        return true;
+    }
+
+    private boolean hasAnyNullChildren(BinaryTreeNode node) {
+        return node.getLeft() == null || node.getRight() == null;
+    }
+
+    private boolean hasAllOrNoChildren(BinaryTreeNode node) {
+        return (node.getLeft() != null && node.getRight() != null) || (node.getLeft() == null && node.getRight() == null);
+    }
+
+    // uses BFS
+    public boolean isFull() {
+
+        Queue<BinaryTreeNode> queue = new Queue<>();
+        if (root != null) {
+            queue.enqueue(root);
+        }
+        while (!queue.isEmpty()) {
+            BinaryTreeNode currentNode = queue.dequeue();
+
+            if (!hasAllOrNoChildren(currentNode)) {
+                return false;
+            }
+
+            if (currentNode.getLeft() != null) {
+                queue.enqueue(currentNode.getLeft());
+            }
+            if (currentNode.getRight() != null) {
+                queue.enqueue(currentNode.getRight());
+            }
+        }
+        return true;
+    }
+
+    public boolean isBST() {
+        return false;
+    }
+
+    // TODO: restrict access
+    public int maxLevelFromNode(BinaryTreeNode node) {
         if (node == null) {
             return 0;
         }
